@@ -7,6 +7,7 @@ from multiprocessing import Process
 import os
 import sys
 import Adafruit_DHT
+import paramiko
 
 sens1 = Adafruit_DHT.DHT11(4)
 sens2 = Adafruit_DHT.DHT11(14)
@@ -28,6 +29,9 @@ def sens1():
                 print("Sensor 1 has reached over 60*C!")
             elif sens1.temperature >= int(os.getenv('CRIT_TEMP')):
                 print("Sensor 1 has reached over 70*C!")
+                ssh = paramiko.SSHClient()
+                ssh.connect(int(os.getenv("SENS1_IP")), int(os.getenv("SENS1_USER")), int(os.getenv("SENS1_PASS")))
+                stdin, stdout, stderr = ssh.exec_command("/usr/bin/poweroff")
 
         except RuntimeError as error:
             print(error.args[0])
@@ -53,7 +57,10 @@ def sens2():
                 print("Sensor 2 has reached over 60*C!")
             elif sens2.temperature >= int(os.getenv('CRIT_TEMP')):
                 print("Sensor 2 has reached over 70*C!")
-        
+                ssh = paramiko.SSHClient()
+                ssh.connect(int(os.getenv("SENS2_IP")), int(os.getenv("SENS2_USER")), int(os.getenv("SENS2_PASS")))
+                stdin, stdout, stderr = ssh.exec_command("/usr/bin/poweroff")
+
         except RuntimeError as error:
             print(error.args[0])
             sleep(2.0)
@@ -78,6 +85,9 @@ def sens3():
                 print("Sensor 3 has reached over 60*C!")
             elif sens3.temperature >= int(os.getenv('CRIT_TEMP')):
                 print("Sensor 3 has reached over 70*C!")
+                ssh = paramiko.SSHClient()
+                ssh.connect(int(os.getenv("SENS3_IP")), int(os.getenv("SENS3_USER")), int(os.getenv("SENS3_PASS")))
+                stdin, stdout, stderr = ssh.exec_command("/usr/bin/poweroff")
 
         except RuntimeError as error:
             print(error.args[0])
@@ -103,6 +113,9 @@ def sens4():
                 print("Sensor 4 has reached over 60*C!")
             elif sens4.temperature >= int(os.getenv('CRIT_TEMP')):
                 print("Sensor 4 has reached over 70*C!")
+                ssh = paramiko.SSHClient()
+                ssh.connect(int(os.getenv("SENS4_IP")), int(os.getenv("SENS4_USER")), int(os.getenv("SENS4_PASS")))
+                stdin, stdout, stderr = ssh.exec_command("/usr/bin/poweroff")
 
         except RuntimeError as error:
             print(error.args[0])
@@ -128,6 +141,9 @@ def sens5():
                 print("Sensor 5 has reached over 60*C!")
             elif sens5.temperature >= int(os.getenv('CRIT_TEMP')):
                 print("Sensor 5 has reached over 70*C!")
+                ssh = paramiko.SSHClient()
+                ssh.connect(int(os.getenv("SENS5_IP")), int(os.getenv("SENS5_USER")), int(os.getenv("SENS5_PASS")))
+                stdin, stdout, stderr = ssh.exec_command("/usr/bin/poweroff")
 
         except RuntimeError as error:
             print(error.args[0])
@@ -153,6 +169,9 @@ def sens6():
                 print("Sensor 6 has reached over 60*C!")
             elif sens6.temperature >= int(os.getenv('CRIT_TEMP')):
                 print("Sensor 6 has reached over 70*C!")
+                ssh = paramiko.SSHClient()
+                ssh.connect(int(os.getenv("SENS6_IP")), int(os.getenv("SEN62_USER")), int(os.getenv("SENS6_PASS")))
+                stdin, stdout, stderr = ssh.exec_command("/usr/bin/poweroff")
 
         except RuntimeError as error:
             print(error.args[0])
